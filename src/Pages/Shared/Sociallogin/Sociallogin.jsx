@@ -14,9 +14,9 @@ const Sociallogin = () => {
 
     const handleGithubSignin =()=>{
         signInWithGithub().then(result=>{
-            console.log(result)
+            // console.log(result)
         }).catch(error=>{
-            console.log(error.message)
+            // console.log(error.message)
         })
     }
     return (
