@@ -1,15 +1,22 @@
-import  { use } from 'react';
-import { NavLink } from 'react-router';
+import { use } from 'react';
+import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../../context/Authcontext/Authcontext';
-
+import logo from '../../../assets/img/logo.png'
+import { FaSortDown } from "react-icons/fa";
+import { motion } from "motion/react"
 const Navbar = () => {
-    const { user,signOutUser } = use(AuthContext)
-    const handleSignOut = ()=>{
-        signOutUser().then('signout User').catch(error=>console.log(error))
+    const { user, signOutUser } = use(AuthContext)
+    const handleSignOut = () => {
+        signOutUser().then('signout User').catch(error => console.log(error))
     }
     const links = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><a>Item 3</a></li>
+        <motion.li className='hover:border-b hover:text-blue-400'  ><NavLink to='/'>Home<FaSortDown size={20} /></NavLink></motion.li>
+        <motion.li className='hover:border-b hover:text-blue-400'> <NavLink to='#'> Find a Job  <FaSortDown size={20}/></NavLink> </motion.li>
+        <motion.li className='hover:border-b hover:text-blue-400'><NavLink to='#'>Recruiters <FaSortDown size={20} /></NavLink></motion.li>
+        <motion.li className='hover:border-b hover:text-blue-400'><NavLink to='#'>Candidates  <FaSortDown size={20} /></NavLink></motion.li>
+        <motion.li className='hover:border-b hover:text-blue-400'><NavLink to='#'>Pages  <FaSortDown size={20} /></NavLink></motion.li>
+        <motion.li className='hover:border-b hover:text-blue-400'><NavLink to='#'>Blog  <FaSortDown size={20} /></NavLink></motion.li>
+        <motion.li className='hover:border-b hover:text-blue-400'><NavLink to='#'>Contact <FaSortDown size={20} /></NavLink></motion.li>
     </>
     return (
         <div>
@@ -27,7 +34,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <Link to='/' className="  font-bold text-2xl flex items-center cursor-pointer"><img className='w-20' src={logo} alt="" /><span className='hover:border-b'>Job Mart</span></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -41,9 +48,15 @@ const Navbar = () => {
                     <NavLink className='btn' to='/signin'>Sign In</NavLink> */}
 
                     {
-                        user ? <button className='btn' onClick={handleSignOut}>Sign Out</button>:<>
-                            <NavLink className='btn' to='/register'>Register</NavLink>
-                            <NavLink className='btn' to='/signin'>Sign In</NavLink>
+                        user ? <button className='btn' onClick={handleSignOut}>Sign Out</button> : <>
+
+                            
+                                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}> 
+                                    <NavLink className='mr-4 cursor-pointer hover:border-b ' to='/register'>Register</NavLink>
+                                     </motion.button>
+                                     <motion.button whileHover={{ scale: 1.1 }}whileTap={{ scale: 0.8 }}>
+                            <NavLink  className='cursor-pointer hover:border-b hover:text-blue-400' to='/signin'>Sign In</NavLink >
+                                     </motion.button>
                         </>
                     }
                 </div>
