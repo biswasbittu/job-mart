@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/Authcontext/Authcontext';
 import Lottie from 'lottie-react';
 import login from '../../assets/animation/Login.json'
 import { Link } from 'react-router';
+import Sociallogin from '../Shared/Sociallogin/Sociallogin';
 const Signin = () => {
 
     const { signInUser } = use(AuthContext)
@@ -40,6 +41,7 @@ const Signin = () => {
                                 <button className="btn btn-neutral mt-4">Login</button>
                             </fieldset>
                         </form>
+                        <Sociallogin/>
                         <div><p >Don't Have an Account Please <Link to='/register' className="link link-hover"><span className='font-semibold text-red-500'>Register</span></Link> </p></div>
 
                     </div>

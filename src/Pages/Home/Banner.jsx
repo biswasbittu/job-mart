@@ -9,14 +9,14 @@ const Banner = () => {
       <div className="hero-content flex-col  lg:flex-row-reverse">
         <div className='flex-1'>
           <motion.img
-              animate={{y:[100,150,100]}}
-              transition={{duration:5,repeat:Infinity}}
+            animate={{ y: [100, 150, 100] }}
+            transition={{ duration: 5, repeat: Infinity }}
             src={team1}
             className="max-w-sm border-blue-600 border-s-8 border-b-8 rounded-t-[40px] rounded-br-[40px] shadow-2xl"
           />
           <motion.img
-              animate={{x:[100,150,100]}}
-              transition={{duration:10,repeat:Infinity, delay:2}}
+            animate={{ x: [100, 150, 100] }}
+            transition={{ duration: 10, repeat: Infinity, delay: 2 }}
             src={team2}
             className="max-w-sm border-blue-600 border-s-8 border-b-8 rounded-t-[40px] rounded-br-[40px] shadow-2xl"
           />
@@ -53,7 +53,41 @@ const Banner = () => {
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
             quasi. In deleniti eaque aut repudiandae et a id nisi.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          {/* <button className="btn btn-primary">Get Started</button>
+           */}
+          <div className=''>
+            <div className="w-full px-4 my-8">
+              {/* মেইন র‍্যাপার যাতে খুব বেশি বড় না হয়ে যায় */}
+              <div className="w-full  mx-auto">
+
+                {/* DaisyUI JOIN শুরু */}
+                {/* shadow-lg: সুন্দর দেখানোর জন্য */}
+                <div className="join w-full shadow-lg  rounded-lg overflow-hidden">
+
+                  {/* ইনপুট ফিল্ড */}
+                  {/* flex-1: এটি খুবই গুরুত্বপূর্ণ। এটি ইনপুটকে বলে ফাঁকা সব জায়গা দখল করতে। */}
+                  <input
+                    type="text"
+                    className="input input-bordered join-item w-full flex-1 h-14 text-lg focus:outline-none border-none pl-6"
+                    placeholder="Search your dream job..."
+                  />
+
+                  {/* সার্চ বাটন */}
+                  <div className='p-2'>
+                    <button className="btn btn-primary join-item rounded-lg px-10 h-14 text-lg font-bold">
+                      Search
+                    </button>
+                  </div>
+
+                </div>
+                {/* DaisyUI JOIN শেষ */}
+
+              </div>
+            </div>
+          </div>
+          <p className="py-6">
+            Provident cupiditate voluptatem et in.
+          </p>
         </div>
       </div>
     </div>

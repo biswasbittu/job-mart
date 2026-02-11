@@ -3,6 +3,7 @@ import React, { use } from 'react';
 import register from '../../assets/animation/progerss.json'
 import { AuthContext } from '../../context/Authcontext/Authcontext';
 import { Link } from 'react-router';
+import Sociallogin from '../Shared/Sociallogin/Sociallogin';
 
 const Register = () => {
 
@@ -44,6 +45,7 @@ const Register = () => {
                                 <button className="btn btn-neutral mt-4">Register</button>
                             </fieldset>
                         </form>
+                        <Sociallogin/> 
                         <div><p >Already Have an Account Please <Link to='/signin' className="link link-hover"><span className='font-semibold text-red-500'>Login</span></Link> </p></div>
                     </div>
                 </div>
