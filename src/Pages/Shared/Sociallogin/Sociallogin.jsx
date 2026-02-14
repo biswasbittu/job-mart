@@ -1,12 +1,16 @@
 import React, { use } from 'react';
 import { AuthContext } from '../../../context/Authcontext/Authcontext';
+import { useLocation, useNavigate } from 'react-router';
 
 const Sociallogin = () => {
     const {signInWithGoogle,signInWithGithub}=use(AuthContext)
-
+    const location =useLocation()
+     const navigate= useNavigate()
+     const from = location.state|| '/'
     const handleGoogleSignin =()=>{
         signInWithGoogle().then(result=>{
             // console.log(result)
+            navigate(from,{replace:true})
         }).catch(error=>{
             // console.log(error)
         })
@@ -15,6 +19,7 @@ const Sociallogin = () => {
     const handleGithubSignin =()=>{
         signInWithGithub().then(result=>{
             // console.log(result)
+             navigate(from)
         }).catch(error=>{
             // console.log(error.message)
         })

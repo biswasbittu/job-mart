@@ -7,7 +7,7 @@ import { RiCupLine, RiMoneyRupeeCircleLine } from 'react-icons/ri';
 import { Link, useLoaderData } from 'react-router';
 
 const Jobdetails = () => {
-    const { title, company, company_logo, salaryRange, jobType, applicationDeadline,category,location,status } = useLoaderData()
+    const { _id,title, company, company_logo, salaryRange, jobType, applicationDeadline,category,location,status,requirements,responsibilities } = useLoaderData()
 
     return (
         <div>
@@ -57,9 +57,27 @@ const Jobdetails = () => {
                         </tbody>
                     </table>
                 </div>
+                <div>
+                    <h1 className='text-2xl font-semibold'>Essential Knowledge, Skills, and Experience</h1>
+                    <ul className="list-disc pl-5">
+                        {
+                         responsibilities.map((skill,idx)=><li key={idx}>{skill}</li>)
+                        }
+                    </ul>
+                </div>
+                <div>
+                    <h1 className='text-2xl font-semibold'>Preferred Experience</h1>
+                    <ul className="list-disc pl-5">
+                        {
+                         requirements.map((skill,idx)=><li key={idx}>{skill}</li>)
+                        }
+                    </ul>
+                </div>
             </div>
             <div className='flex justify-center'>
+                <Link to={`/jobApply/${_id}`} > 
                 <button className='btn btn-wide'>Apply Now</button>
+                </Link>
             </div>
         </div>
     );

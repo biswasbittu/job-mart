@@ -56,7 +56,7 @@ const HotjobsCard = ({ job }) => {
         </div>
         <div className='flex items-center'>
           <p className='text-xl text-blue-500'>salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
-          <Link to={`/jobs/${_id}`} className='btn'>Apply Now</Link>
+          <Link to={`/jobs/${_id}`} className='btn'>Show Details</Link>
         </div>
       </div>
     </div>
