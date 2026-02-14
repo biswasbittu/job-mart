@@ -48,7 +48,7 @@ const Signin = () => {
                                 <button className="btn btn-neutral mt-4">Login</button>
                             </fieldset>
                         </form>
-                        <Sociallogin/>
+                        <Sociallogin from={from}/>
                         <div><p >Don't Have an Account Please <Link to='/register' className="link link-hover"><span className='font-semibold text-red-500'>Register</span></Link> </p></div>
 
                     </div>
