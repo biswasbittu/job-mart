@@ -2,20 +2,22 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
     const { id: jobId } = useParams();
     // const params = useParams();
-    const [job, setJob]=useState([]);
+    const [job, setJob] = useState([]);
 
     // console.log(params)
-    useEffect(()=>{
+    useEffect(() => {
         fetch(`http://localhost:3000/jobs/${jobId}`)
-        .then(res=>res.json())
-        .then(data=>{
-            setJob(data)
-        })
-    },[jobId])
+            .then(res => res.json())
+            .then(data => {
+                setJob(data)
+            })
+    }, [jobId])
     const { user } = useAuth();
     // console.log(jobId,user)
     const handleFormSubmit = (e) => {
@@ -23,7 +25,34 @@ const JobApply = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries())
         data.remote = formData.has('remote')
-        console.table([data])
+        const application = {
+            jobId,
+            applicantEmail: user?.email,
+            ...data
+        }
+        axios.post('http://localhost:3000/applications', application)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        // position: "top-end",
+                        icon: "success",
+                        title: "Submitted Successfully",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            })
+            .catch(error => {
+                if (error.response?.status === 400) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Already applied for this job!",
+                        text: "You have already applied for this job.",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            })
     }
 
     return (
@@ -32,12 +61,12 @@ const JobApply = () => {
             <div className="max-w-3xl mx-auto p-6">
                 <div className='flex gap-4 items-center justify-center'>
                     <figure>
-                    <img src={job?.company_logo} alt="Job Image" />
-                </figure>
-                <div>
-                    <h1 className="text-2xl font-bold">{job?.title}</h1>
-                <h1 className="text-xl font-bold">{job?.company}</h1>
-                </div>
+                        <img src={job?.company_logo} alt="Job Image" />
+                    </figure>
+                    <div>
+                        <h1 className="text-2xl font-bold">{job?.title}</h1>
+                        <h1 className="text-xl font-bold">{job?.company}</h1>
+                    </div>
 
                 </div>
                 <form onSubmit={handleFormSubmit} className="card bg-base-100 shadow-xl p-8 space-y-8">
@@ -74,6 +103,8 @@ const JobApply = () => {
                                 <input
                                     type="email"
                                     name="email"
+                                    defaultValue={user?.email}
+                                    readOnly
                                     className="input input-bordered w-full"
                                 />
                             </div>
